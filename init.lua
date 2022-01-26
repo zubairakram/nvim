@@ -19,20 +19,9 @@ vim.o.shiftwidth = 4
 -- " copy from vim to clipboard key mapping
 -- vnoremap <C-c> "+y
 -- 
--- " Find files using Telescope command-line sugar.
--- nnoremap <C-p> <cmd>Telescope find_files<cr>
--- nnoremap <C-g> <cmd>Telescope live_grep<cr>
--- nnoremap <C-b> <cmd>Telescope buffers<cr>
--- nnoremap <C-h> <cmd>Telescope help_tags<cr>
--- 
 -- " Register CocExtensions
 -- let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-svelte', 'coc-tsserver', 'coc-rls', 'coc-lua']
 --       
--- " Netrw setting
--- map <C-t> :Lexplore<CR>
--- let g:netrw_liststyle = 3
--- let g:netrw_winsize = -32
--- 
 -- ********************************************************************************
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
@@ -58,15 +47,8 @@ return require('packer').startup(function()
         requires = { 'nvim-lua/plenary.nvim' },
         require('telescope').setup{
             defaults = {
-                mappings = {
-                    i = {
-                        ["<C-p>"] = "find_files(opts)"
-                    }
-                }
-            },
-            pickers = {
-                find_files = {
-                    theme = 'dropdown',
+                file_ignore_patterns = {
+                    "node_modules"
                 }
             }
         }
@@ -85,4 +67,6 @@ return require('packer').startup(function()
         'kyazdani42/nvim-tree.lua',
         require'nvim-tree'.setup {}
     }
+    vim.api.nvim_set_keymap('n', '<C-t>', ':NvimTreeToggle<CR>', {})
+    vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope find_files<CR>', {})
 end)

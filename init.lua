@@ -2,6 +2,6 @@
 ------------------------NEOVIM CONFIGURATION FILE-------------------------------
 --------------------------------------------------------------------------------
 
-require("basic")
-require("mapping")
 require("plugins")
+require("mapping")
+require("basic")

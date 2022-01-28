@@ -1,5 +1,5 @@
 -- toggle Nvim Tree
-vim.api.nvim_set_keymap('n', '<C-t>', ':NvimTreeToggle<cr>', {})
+vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<cr>', {})
 
 -- launch Telescope
 vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope find_files<CR>', {})

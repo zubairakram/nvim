@@ -12,3 +12,7 @@ vim.o.shiftwidth = 4
 vim.o.autoread = true
 vim.o.autowriteall = true
 vim.o.backupcopy = 'auto'
+
+-- treesitter based code folding
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

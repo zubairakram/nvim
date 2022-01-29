@@ -4,15 +4,13 @@ vim.o.relativenumber = true
 
 -- tab to space setting
 vim.o.expandtab = true
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
 
 -- file auto read/write setting
 vim.o.autoread = true
 vim.o.autowriteall = true
 vim.o.backupcopy = 'auto'
 
--- treesitter based code folding
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.list = true

@@ -5,6 +5,7 @@ return require('packer').startup(function()
   -- dependencies
   use 'nvim-lua/plenary.nvim'
 
+  -- plugins
   use 'leafoftree/vim-svelte-plugin'
   use 'mattn/emmet-vim'
   use 'mg979/vim-visual-multi'
@@ -28,7 +29,11 @@ return require('packer').startup(function()
   }
   use {
     'neovim/nvim-lspconfig',
-    require('lspconfig').tsserver.setup{}
+    'williamboman/nvim-lsp-installer',
+    require("nvim-lsp-installer").on_server_ready(function(server)
+      local opts = {}
+      server:setup(opts)
+    end)
   }
   use {
     'nvim-treesitter/nvim-treesitter',

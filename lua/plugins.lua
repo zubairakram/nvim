@@ -53,6 +53,15 @@ return require('packer').startup(function()
     }
   }
   use {
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/nvim-cmp',
+    require('cmp').setup{
+      sources = require('cmp').config.sources({
+      { name = 'nvim_lsp'}
+    })
+    }
+    }
+  use {
     'nvim-telescope/telescope.nvim',
     require('telescope').setup{
       defaults = {

@@ -28,24 +28,11 @@ return require('packer').startup(function()
     require('gitsigns').setup()
   }
   use {
-    'neovim/nvim-lspconfig',
-    'williamboman/nvim-lsp-installer',
-    require("nvim-lsp-installer").on_server_ready(function(server)
-      local opts = {}
-      server:setup(opts)
-    end)
-  }
-  use {
     'nvim-treesitter/nvim-treesitter',
-    -- run = ':TSUpdate'
-    require'nvim-treesitter.configs'.setup {
+    require('nvim-treesitter.configs').setup {
       ensure_installed = "maintained",
-      sync_install = false,
-
       highlight = {
         enable = true,
-        -- Instead of true it can also be a list of languages
-        additional_vim_regex_highlighting = false,
       },
       indent = {
         enable = true,
@@ -53,17 +40,30 @@ return require('packer').startup(function()
     }
   }
   use {
+    'neovim/nvim-lspconfig',
+    'williamboman/nvim-lsp-installer',
+    require("nvim-lsp-installer").on_server_ready(function(server)
+      local opts = {}
+      if server.name == "sumneko_lua" then
+        opts = {
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = {'vim', 'use'}
+              }
+            }
+          }
+        }
+      end
+      server:setup(opts)
+    end)
+  }
+  use {
     'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
-    require('cmp').setup{
-      sources = require('cmp').config.sources({
-      { name = 'nvim_lsp'},
-      { name = 'buffer'},
-      { name = 'path'},
-      })
-      }
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/nvim-cmp'
   }
   use {
     'nvim-telescope/telescope.nvim',

@@ -14,7 +14,6 @@ return require('packer').startup(function()
   use 'tpope/vim-surround'
   use 'yuttie/comfortable-motion.vim'
   use 'Yggdroot/indentLine'
-
   use {
     'windwp/nvim-autopairs',
     require('nvim-autopairs').setup()
@@ -63,7 +62,9 @@ return require('packer').startup(function()
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
-    'hrsh7th/nvim-cmp'
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-vsnip',
+    'hrsh7th/vim-vsnip'
   }
   use {
     'nvim-telescope/telescope.nvim',

@@ -12,7 +12,9 @@ return require('packer').startup(function()
     use 'Yggdroot/indentLine'
     use {
         'numToStr/Comment.nvim',
-        require('Comment').setup()
+        config = function ()
+            require('Comment').setup()
+        end
     }
     use {
         'karb94/neoscroll.nvim',

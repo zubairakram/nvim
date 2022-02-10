@@ -10,7 +10,6 @@ return require('packer').startup(function()
     use 'mattn/emmet-vim'
     use 'mg979/vim-visual-multi'
     use 'tpope/vim-commentary'
-    --  use 'tpope/vim-fugitive'
     use 'tpope/vim-surround'
     use 'yuttie/comfortable-motion.vim'
     use 'Yggdroot/indentLine'

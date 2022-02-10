@@ -1,4 +1,3 @@
--- plugins for neovim
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
@@ -9,12 +8,19 @@ return require('packer').startup(function()
     use 'leafoftree/vim-svelte-plugin'
     use 'mattn/emmet-vim'
     use 'mg979/vim-visual-multi'
-    use 'tpope/vim-commentary'
     use 'tpope/vim-surround'
-    use 'yuttie/comfortable-motion.vim'
     use 'Yggdroot/indentLine'
-    use { 'TimUntersberger/neogit',
-        require('neogit').setup{}
+    use {
+        'numToStr/Comment.nvim',
+        require('Comment').setup()
+    }
+    use {
+        'karb94/neoscroll.nvim',
+        require('neoscroll').setup()
+    }
+    use {
+        'TimUntersberger/neogit',
+        require('neogit').setup()
     }
     use {
         'windwp/nvim-autopairs',

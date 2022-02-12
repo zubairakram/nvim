@@ -10,7 +10,6 @@ return require('packer').startup(function()
     use 'mg979/vim-visual-multi'
     use 'tpope/vim-surround'
     use 'Yggdroot/indentLine'
-    use 'dstein64/nvim-scrollview'
     use {
         'numToStr/Comment.nvim',
         config = function ()

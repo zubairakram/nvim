@@ -3,6 +3,7 @@ return require('packer').startup(function()
 
     -- dependencies
     use 'nvim-lua/plenary.nvim'
+    use 'kyazdani42/nvim-web-devicons'
 
     -- plugins
     use 'leafoftree/vim-svelte-plugin'
@@ -88,7 +89,6 @@ return require('packer').startup(function()
     }
     use {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
         require('lualine').setup{
             options = {
                 theme = 'powerline',

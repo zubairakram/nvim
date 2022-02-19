@@ -3,6 +3,6 @@
 --------------------------------------------------------------------------------
 
 require("plugins")
-require("settings")
+require("lsp_settings")
 require("mapping")
 require("basic")

@@ -35,7 +35,15 @@ return require('packer').startup(function()
     }
     use {
         'lewis6991/gitsigns.nvim',
-        require('gitsigns').setup()
+        require('gitsigns').setup{
+            signs = {
+                add = { text = '+'},
+                change = { text = '~'},
+                delete = { text = '_'},
+                topdelete = { text = '‾'},
+                changedelete = { text = '~'},
+            }
+        }
     }
     use {
         'nvim-treesitter/nvim-treesitter',

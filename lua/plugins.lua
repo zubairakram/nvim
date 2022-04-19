@@ -11,12 +11,7 @@ return require('packer').startup(function()
     use 'mg979/vim-visual-multi'
     use 'tpope/vim-surround'
     use 'Yggdroot/indentLine'
-    use {
-        'numToStr/Comment.nvim',
-        config = function ()
-            require('Comment').setup()
-        end
-    }
+    use 'b3nj5m1n/kommentary'
     use {
         'karb94/neoscroll.nvim',
         require('neoscroll').setup()

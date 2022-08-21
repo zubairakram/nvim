@@ -2,7 +2,7 @@
 ------------------------NEOVIM CONFIGURATION FILE-------------------------------
 --------------------------------------------------------------------------------
 
+require("basic")
+require("mapping")
 require("plugins")
 require("lsp_settings")
-require("mapping")
-require("basic")

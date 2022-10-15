@@ -1,5 +1,4 @@
 -- line numbering
-vim.wo.number = true
 vim.wo.relativenumber = true
 
 -- set highlight on search

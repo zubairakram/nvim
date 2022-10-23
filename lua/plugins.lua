@@ -53,7 +53,12 @@ return require("packer").startup(function()
     }
     use {
         'TimUntersberger/neogit',
-        require('neogit').setup()
+        'sindrets/diffview.nvim',
+        require('neogit').setup{
+            integrations = {
+                diffview = true
+            }
+        }
     }
     use {
         'windwp/nvim-autopairs',

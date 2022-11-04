@@ -18,6 +18,3 @@ vim.o.autoread = true
 vim.o.autowriteall = true
 vim.o.backupcopy = 'auto'
 vim.o.undofile = true
-
--- enable mouse mode
-vim.o.mouse = 'a'

@@ -61,7 +61,7 @@ cmp.setup.cmdline(':', {
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local lang_servers = {'tsserver', 'sumneko_lua', 'clangd'}
+local lang_servers = {'tsserver', 'sumneko_lua', 'clangd', 'jedi_language_server'}
 
 for lang_server_index in ipairs(lang_servers) do
     require('lspconfig')[lang_servers[lang_server_index]].setup {

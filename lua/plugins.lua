@@ -14,12 +14,18 @@ return require("packer").startup(function(use)
         }
     }
     -- plugins
-    use 'leafoftree/vim-svelte-plugin'
     use 'mattn/emmet-vim'
     use 'mg979/vim-visual-multi'
     use 'tpope/vim-surround'
     use 'Yggdroot/indentLine'
     use 'b3nj5m1n/kommentary'
+    use {
+        'navarasu/onedark.nvim',
+        require('onedark').setup {
+            style = 'deep'
+        }
+    }
+    require('onedark').load()
     use {
         'nvim-telescope/telescope.nvim',
         require('telescope').setup{
@@ -34,7 +40,6 @@ return require("packer").startup(function(use)
         'nvim-lualine/lualine.nvim',
         require('lualine').setup{
             options = {
-                theme = 'powerline',
                 component_separators = { left = '', right = '' },
                 section_separators = { left = '', right = '' },
             },

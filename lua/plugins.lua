@@ -8,9 +8,6 @@ return require("packer").startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         require('nvim-treesitter.configs').setup {
             ensure_installed = "all",
-            highlight = {
-                enable = true,
-            },
         }
     }
     -- plugins

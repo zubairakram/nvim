@@ -1,19 +1,22 @@
+------------------------------BASIC CONFIGURATIONS------------------------------
 -- line numbering
 vim.wo.number = true
 vim.wo.relativenumber = true
 
--- set highlight on search
-vim.o.hlsearch = false
+-- highlights
 vim.o.breakindent = true
+vim.o.cursorline = true
+vim.o.hlsearch = false
+
 -- case insensitive searching
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- tab to space setting
 vim.o.expandtab = true
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+vim.o.tabstop = 4
 
 -- file related setting
 vim.o.autowriteall = true
@@ -60,7 +63,7 @@ require("lazy").setup({
     {
         "williamboman/mason-lspconfig.nvim",
         opts = {
-            ensure_installed = { "lua_ls", "tsserver" }
+            ensure_installed = { "lua_ls", "tsserver", "pyright"}
         }
     },
     {
@@ -137,7 +140,41 @@ require('nvim-treesitter.configs').setup {
     ensure_installed = { "css", "javascript", "html", "lua", "python"},
 }
 
+----------------------------------LSP Mappings----------------------------------
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local bufopts = { noremap=true, silent=true, buffer=bufnr }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+    vim.keymap.set('n', '<space>wl', function()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, bufopts)
+    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+    vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+end
+
+--------------------------------NVIM CMP CONFIGS--------------------------------
 local cmp = require'cmp'
 
 cmp.setup({
@@ -151,8 +188,8 @@ cmp.setup({
         end,
     },
     window = {
-        -- completion = cmp.config.window.bordered(),
-        -- documentation = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -202,6 +239,9 @@ cmp.setup.cmdline(':', {
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-require('lspconfig')['lua_ls'].setup {
-    capabilities = capabilities
-}
+local servers = {'lua_ls', 'tsserver', 'pyright'}
+for key, value in pairs(servers) do
+    require('lspconfig')[value].setup {
+        capabilities = capabilities
+    }
+end

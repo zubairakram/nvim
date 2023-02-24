@@ -58,14 +58,9 @@ require("lazy").setup({
     'neovim/nvim-lspconfig',
     'windwp/nvim-autopairs',
     'nvim-treesitter/nvim-treesitter',
+    "williamboman/mason-lspconfig.nvim",
 
     --plugins with configurationp
-    {
-        "williamboman/mason-lspconfig.nvim",
-        opts = {
-            ensure_installed = { "lua_ls", "tsserver", "pyright"}
-        }
-    },
     {
         'navarasu/onedark.nvim',
         opts = {

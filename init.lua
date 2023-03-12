@@ -58,9 +58,9 @@ require("lazy").setup({
     'neovim/nvim-lspconfig',
     'windwp/nvim-autopairs',
     'nvim-treesitter/nvim-treesitter',
-    "williamboman/mason-lspconfig.nvim",
+    'williamboman/mason-lspconfig.nvim',
 
-    --plugins with configurationp
+    --plugins with configuration
     {
         'navarasu/onedark.nvim',
         opts = {
@@ -90,7 +90,7 @@ require("lazy").setup({
         opts = {
             defaults = {
                 file_ignore_patterns = {
-                    "node_modules"
+                    'node_modules'
                 }
             }
         },
@@ -124,15 +124,15 @@ require("lazy").setup({
     },
 }, {})
 
-require("mason").setup()
-require("mason-lspconfig").setup()
+require('mason').setup()
+require('mason-lspconfig').setup()
 require('neoscroll').setup()
-require("nvim-autopairs").setup()
-require("nvim-tree").setup()
-require("onedark").load()
+require('nvim-autopairs').setup()
+require('nvim-tree').setup()
+require('onedark').load()
 require('Comment').setup()
 require('nvim-treesitter.configs').setup {
-    ensure_installed = { "css", "javascript", "html", "lua", "python"},
+    ensure_installed = { 'css', 'javascript', 'html', 'lua', 'python'},
 }
 
 ----------------------------------LSP Mappings----------------------------------
@@ -231,6 +231,16 @@ cmp.setup.cmdline(':', {
     })
 })
 
+-- treesitter configuration
+require('nvim-treesitter.configs').setup {
+    highlight = {
+        enable = true
+    },
+    indent = {
+        enable = true,
+        disable = {'python'}
+    }
+}
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.

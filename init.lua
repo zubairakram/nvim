@@ -22,6 +22,8 @@ vim.o.tabstop = 4
 vim.o.autowriteall = true
 vim.o.backupcopy = 'auto'
 vim.o.undofile = true
+vim.o.cmdheight = 0
+vim.o.scrolloff = 8
 
 -- toggle Nvim Tree
 vim.keymap.set('n', '<C-j>', ':NvimTreeToggle<cr>')
@@ -200,8 +202,8 @@ cmp.setup({
         -- { name = 'ultisnips' }, -- For ultisnips users.
         -- { name = 'snippy' }, -- For snippy users.
     }, {
-        { name = 'buffer' },
-    })
+            { name = 'buffer' },
+        })
 })
 
 -- Set configuration for specific filetype.
@@ -209,8 +211,8 @@ cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
         { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
     }, {
-        { name = 'buffer' },
-    })
+            { name = 'buffer' },
+        })
 })
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
@@ -227,8 +229,8 @@ cmp.setup.cmdline(':', {
     sources = cmp.config.sources({
         { name = 'path' }
     }, {
-        { name = 'cmdline' }
-    })
+            { name = 'cmdline' }
+        })
 })
 
 -- treesitter configuration
@@ -241,6 +243,15 @@ require('nvim-treesitter.configs').setup {
         disable = {'python'}
     }
 }
+
+-- enable nvim-tree indent_markers
+require('nvim-tree').setup({
+    renderer = {
+        indent_markers = {
+            enable = true
+        }
+    }
+})
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.

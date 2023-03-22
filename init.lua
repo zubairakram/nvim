@@ -54,13 +54,14 @@ require("lazy").setup({
     'lukas-reineke/indent-blankline.nvim',
     'mattn/emmet-vim',
     'mg979/vim-visual-multi',
-    'numToStr/Comment.nvim',
-    'tpope/vim-surround',
-    'williamboman/mason.nvim',
     'neovim/nvim-lspconfig',
-    'windwp/nvim-autopairs',
+    'numToStr/Comment.nvim',
     'nvim-treesitter/nvim-treesitter',
+    'rcarriga/nvim-notify',
+    'tpope/vim-surround',
     'williamboman/mason-lspconfig.nvim',
+    'williamboman/mason.nvim',
+    'windwp/nvim-autopairs',
 
     --plugins with configuration
     {
@@ -243,6 +244,8 @@ require('nvim-treesitter.configs').setup {
         disable = {'python'}
     }
 }
+
+vim.notify = require("notify")
 
 -- enable nvim-tree indent_markers
 require('nvim-tree').setup({

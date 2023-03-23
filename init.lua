@@ -51,6 +51,7 @@ require("lazy").setup({
 
     -- plugins without configuration
     'karb94/neoscroll.nvim',
+    'kdheepak/lazygit.nvim',
     'lukas-reineke/indent-blankline.nvim',
     'mattn/emmet-vim',
     'mg979/vim-visual-multi',

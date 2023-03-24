@@ -58,6 +58,7 @@ require("lazy").setup({
     'neovim/nvim-lspconfig',
     'numToStr/Comment.nvim',
     'nvim-treesitter/nvim-treesitter',
+    'rafamadriz/friendly-snippets',
     'rcarriga/nvim-notify',
     'tpope/vim-surround',
     'williamboman/mason-lspconfig.nvim',
@@ -256,6 +257,10 @@ require('nvim-tree').setup({
         }
     }
 })
+
+-- friendly snippets plugin loaded
+require("luasnip.loaders.from_vscode").lazy_load()
+
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.

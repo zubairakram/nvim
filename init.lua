@@ -22,7 +22,6 @@ vim.o.tabstop = 4
 vim.o.autowriteall = true
 vim.o.backupcopy = 'auto'
 vim.o.undofile = true
-vim.o.cmdheight = 0
 vim.o.scrolloff = 8
 
 -- toggle Nvim Tree
@@ -30,7 +29,7 @@ vim.keymap.set('n', '<C-j>', ':NvimTreeToggle<cr>')
 -- launch Telescope
 vim.keymap.set('n', '<C-p>', ':Telescope find_files<CR>')
 -- copy selected lines to system clipboard
-vim.keymap.set('v', '<C-c>', '"+y', {})
+vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
 
 -- Install Plugin Manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -51,7 +50,6 @@ require("lazy").setup({
 
     -- plugins without configuration
     'karb94/neoscroll.nvim',
-    'kdheepak/lazygit.nvim',
     'lukas-reineke/indent-blankline.nvim',
     'mattn/emmet-vim',
     'mg979/vim-visual-multi',

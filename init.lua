@@ -59,16 +59,25 @@ require("lazy").setup({
     'nvim-treesitter/nvim-treesitter',
     'rafamadriz/friendly-snippets',
     'rcarriga/nvim-notify',
-    'tpope/vim-surround',
     'williamboman/mason-lspconfig.nvim',
     'williamboman/mason.nvim',
     'windwp/nvim-autopairs',
 
     --plugins with configuration
     {
+        'kylechui/nvim-surround',
+        version = '*', -- Use for stability; omit to use `main` branch for the latest features
+        event = 'VeryLazy',
+        config = function()
+            require('nvim-surround').setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+    },
+    {
         'navarasu/onedark.nvim',
         opts = {
-            style = "deep"
+            style = 'deep'
         }
     },
     {
@@ -81,8 +90,10 @@ require("lazy").setup({
         'nvim-lualine/lualine.nvim',
         opts = {
             options = {
-                component_separators = { left = '', right = '' },
-                section_separators = { left = '', right = '' },
+                globalstatus = true
+            },
+            sections = {
+                lualine_a = { 'mode', 'selectioncount' },
             },
             tabline = {
                 lualine_a = { 'buffers' }
@@ -250,8 +261,8 @@ cmp.setup.cmdline(':', {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 local servers = { 'lua_ls', 'tsserver', 'pyright' }
-for key, value in pairs(servers) do
-    require('lspconfig')[value].setup {
+for _, server in pairs(servers) do
+    require('lspconfig')[server].setup {
         capabilities = capabilities
     }
 end

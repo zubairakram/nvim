@@ -22,14 +22,24 @@ vim.o.tabstop = 4
 vim.o.autowriteall = true
 vim.o.backupcopy = 'auto'
 vim.o.undofile = true
-vim.o.scrolloff = 8
+vim.o.scrolloff = 4
 
+-- launch lazy
+vim.keymap.set("n", "<space>l", ":Lazy<cr>", { desc = "Lazy" })
 -- toggle Nvim Tree
 vim.keymap.set('n', '<C-j>', ':NvimTreeToggle<cr>')
 -- launch Telescope
 vim.keymap.set('n', '<C-p>', ':Telescope find_files<CR>')
 -- copy selected lines to system clipboard
 vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
+
+-- Move Lines
+vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+vim.keymap.set("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+vim.keymap.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+vim.keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- Install Plugin Manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

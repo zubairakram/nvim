@@ -36,7 +36,6 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
         "git",
-        --        require('onedark').load()
         "clone",
         "--filter=blob:none",
         "https://github.com/folke/lazy.nvim.git",
@@ -51,7 +50,6 @@ require("lazy").setup({
     -- plugins without configuration
     'folke/neodev.nvim',
     'karb94/neoscroll.nvim',
-    'lukas-reineke/indent-blankline.nvim',
     'mattn/emmet-vim',
     'mg979/vim-visual-multi',
     'neovim/nvim-lspconfig',
@@ -136,6 +134,7 @@ require("lazy").setup({
         'hrsh7th/nvim-cmp',
         dependencies = {
             'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-nvim-lua',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',

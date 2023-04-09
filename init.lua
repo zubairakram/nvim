@@ -24,22 +24,24 @@ vim.o.backupcopy = 'auto'
 vim.o.undofile = true
 vim.o.scrolloff = 4
 
+-- better escape
+vim.keymap.set('i', 'jj', '<esc>', { desc = 'Switch to Normal Mode' })
 -- launch lazy
-vim.keymap.set("n", "<space>l", ":Lazy<cr>", { desc = "Lazy" })
+vim.keymap.set('n', '<space>ll', ':Lazy<cr>', { desc = 'Launch Lazy' })
 -- toggle Nvim Tree
-vim.keymap.set('n', '<C-j>', ':NvimTreeToggle<cr>')
+vim.keymap.set('n', '<c-j>', ':NvimTreeToggle<cr>', { desc = 'Toggle NvimTree' })
 -- launch Telescope
-vim.keymap.set('n', '<C-p>', ':Telescope find_files<CR>')
+vim.keymap.set('n', '<c-p>', ':Telescope find_files<CR>', { desc = 'Launch Telescope' })
 -- copy selected lines to system clipboard
 vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
 
 -- Move Lines
-vim.keymap.set("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
-vim.keymap.set("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
-vim.keymap.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-vim.keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+vim.keymap.set('n', '<A-j>', '<cmd>m .+1<cr>==', { desc = 'Move down' })
+vim.keymap.set('n', '<A-k>', '<cmd>m .-2<cr>==', { desc = 'Move up' })
+vim.keymap.set('i', '<A-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move down' })
+vim.keymap.set('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move up' })
+vim.keymap.set('v', '<A-j>', ":m '>+1<cr>gv=gv", { desc = 'Move down' })
+vim.keymap.set('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move up' })
 
 -- Install Plugin Manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -66,12 +68,21 @@ require("lazy").setup({
     'numToStr/Comment.nvim',
     'nvim-treesitter/nvim-treesitter',
     'rafamadriz/friendly-snippets',
+    'ray-x/lsp_signature.nvim',
     'rcarriga/nvim-notify',
     'williamboman/mason-lspconfig.nvim',
     'williamboman/mason.nvim',
     'windwp/nvim-autopairs',
 
     --plugins with configuration
+    {
+        'j-hui/fidget.nvim',
+        opts = {
+            text = {
+                spinner = 'dots_pulse'
+            }
+        }
+    },
     {
         'kylechui/nvim-surround',
         version = '*', -- Use for stability; omit to use `main` branch for the latest features
@@ -154,14 +165,17 @@ require("lazy").setup({
     },
 }, {})
 
+-- activate plugins
 vim.notify = require("notify")
+require('Comment').setup()
+require('fidget').setup()
+require('lsp_signature').setup()
 require('mason').setup()
 require('mason-lspconfig').setup()
 require('neoscroll').setup()
 require('nvim-autopairs').setup()
 require('nvim-tree').setup()
 require('onedark').load()
-require('Comment').setup()
 require('nvim-treesitter.configs').setup {
     ensure_installed = { 'css', 'javascript', 'html', 'lua', 'python' },
 }
